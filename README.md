@@ -9,7 +9,7 @@ A customizable **No Internet Screen** for Flutter apps with a reusable widget.
 When your app has no connectivity, instead of a boring static screen, you can show users with customizable text and image.
 
 ## ✨ Features
-🔌 Auto-detects internet connectivity using [`connectivity_plus`](https://pub.dev/packages/connectivity_plus)
+✅ Auto-detects internet connectivity using [`connectivity_plus`](https://pub.dev/packages/connectivity_plus).    
 ✅ Automatically detects internet connectivity changes.  
 ✅ Displays a **No Internet screen** with custom image + message.  
 ✅ Retry button to re-check internet availability.  
