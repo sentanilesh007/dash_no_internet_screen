@@ -1,7 +1,7 @@
 name: dash_no_internet_screen
 description: "A Widget to show when there is no internet connection Screen."
-homepage:
-repository:
+homepage: https://github.com/sentanilesh007/dash_no_internet_screen/blob/main/lib/dash_no_internet_screen.dart
+repository: https://github.com/sentanilesh007/dash_no_internet_screen
 version: 0.0.1
 
 
