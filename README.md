@@ -1,18 +1,17 @@
-# 🚀  Dash No Internet Screen 
 
-[![Pub Version](https://img.shields.io/pub/v/yourpackage-name.svg)](link)
+<img width="1860" height="166" alt="dashstack_poster" src="https://github.com/user-attachments/assets/12f83877-3a1d-4bc2-876b-c5e551acc7ca" />
 
+#   Customize No Internet Screen 
 A customizable **No Internet Screen** for Flutter apps with a reusable widget.  
 When your app has no connectivity, instead of a boring static screen, you can show users with customizable text and image.
 
----
-
 ## ✨ Features
-- 📱 Responsive layout (works on Android, iOS, Web, and Desktop)  
-- 🖼️ Support for **custom image, and text**  
-- 🔌 Auto-detects internet connectivity using [`connectivity_plus`](https://pub.dev/packages/connectivity_plus)  
-
----
+🔌 Auto-detects internet connectivity using [`connectivity_plus`](https://pub.dev/packages/connectivity_plus)
+✅ Automatically detects internet connectivity changes.  
+✅ Displays a **No Internet screen** with custom image + message.  
+✅ Retry button to re-check internet availability.  
+✅ Supports add images and random messages text.  
+✅ Plug & Play → Wrap your any widget and screens with `DashNoInternetScreen`.    
 
 ## 📸 Screenshots
 | No Internet Screen | Example Screen |
@@ -20,161 +19,79 @@ When your app has no connectivity, instead of a boring static screen, you can sh
 | <img width="400" height="711" alt="no_internet_screen" src="https://github.com/user-attachments/assets/ca0139af-c384-4a61-af21-5a8568268ea8" /> | <img width="400" height="711" alt="test_screen" src="https://github.com/user-attachments/assets/a88c3f40-e99d-465e-9df5-725b61900265" /> |
 
 ---
+## How to use it?
 
-## NO Internet Screen Package
+### 1. Add dependency
+Add this to your package's pubspec.yaml file:
 ```
-import 'dart: async';
-import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package: flutter/material.dart';
+dependencies:
+  dash_no_internet_screen: <latest_version>
+  ```
+### 2. Install it
+You can install packages from the command line:
 
-class DashNoInterNetScreen extends StatefulWidget {
-  final Widget child;
-  final String? image;
-  final String? text;
-  const DashNoInterNetScreen({super.key, required this.child,this.image,this.text});
-
-  @override
-  State<DashNoInterNetScreen> createState() => _DashNoInterNetScreenState();
-}
-
-class _DashNoInterNetScreenState extends State<DashNoInterNetScreen> {
-  late StreamSubscription<List<ConnectivityResult>> connectivitySubscription;
-  bool hasInternet = true;
-
-  @override
-  void initState() {
-    super.initState();
-    connectivitySubscription = Connectivity().onConnectivityChanged.listen(updateConnectionStatus);
-    checkInitialConnectivity();
-  }
-  
-  /// check initial connectivity status
-  Future<void> checkInitialConnectivity() async {
-    final connectivityResult = await (Connectivity().checkConnectivity());
-    updateConnectionStatus(connectivityResult);
-  }
-
-  /// update connection status
-  void updateConnectionStatus(List<ConnectivityResult> results) {
-    final hasInternet = results.any((result) => result != ConnectivityResult.none);
-    if (this.hasInternet != hasInternet) {
-      setState(() {
-        this.hasInternet = hasInternet;
-      });
-    }
-  }
-
-  /// show snackbar message
-  void showSnackBar(String message, {Color color = Colors.red}) {
-    if (mounted) {
-      ScaffoldMessenger.of(context).hideCurrentSnackBar();
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(message),
-          backgroundColor: color,
-        ),
-      );
-    }
-  }
-  
-  @override
-  void dispose() {
-    connectivitySubscription.cancel();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    if (hasInternet) {
-      return widget.child;
-    } else {
-      return buildNoInternetScreen(context);
-    }
-  }
-  
-/// no internet screen widget 
-  Widget buildNoInternetScreen(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                widget.image?? "assets/no_internet.png",
-                height: 150,
-                width: 150,
-              ),
-              const SizedBox(height: 20),
-              Text(
-                widget.text ?? "No internet? Please Check Your Internet Connection!",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400, color: Colors.black),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 30),
-              ElevatedButton(
-                onPressed: () async {
-                  final connectivityResult = await (Connectivity().checkConnectivity());
-                  final hasInternet = connectivityResult.any((result) => result != ConnectivityResult.none);
-                  if (hasInternet) {
-                    setState(() {
-                      this.hasInternet = true;
-                    });
-                    showSnackBar('Internet is now available!', color: Colors.green);
-                  } else {
-                    showSnackBar('No internet connection. Please try again.');
-                  }
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                ),
-                child: Text(
-                  'Try Again',
-                  style: TextStyle(color: Colors.white, fontSize: 16),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
+with pub:
 
 ```
-
-## ? How to use This Package
+$ pub get
 ```
-import 'package:flutter/material.dart';
-import 'package:dash_no_internet_screen/dash_no_internet_screen.dart'; //import package
+with Flutter:
+``` 
+$ flutter pub get
+```
+### 3. Import it
+```
+import 'package:dash_no_internet_screen/dash_no_internet_screen.dart';
+``` 
+### 4. Use it
+[Sample](https://github.com/sentanilesh007/dash_no_internet_screen) app demonstrates how simple the usage of the library actually is.
 
-/// this is how to use in your app page for example
-class TestScreen extends StatelessWidget {
-  const TestScreen({super.key});
+Using `DashNoInterNetScreen` in your project is super simple .  
 
-  @override
-  Widget build(BuildContext context) {
-    ///wrap with DashNoInterNetScreen for your project any screen
+You just need to **wrap your screen with `DashNoInterNetScreen`**, and it will automatically handle the internet connectivity state for you.
+
+---
+
+## Basic usage
+
+Add WithOut Image And Text Using BY Defult :
+
+
+```
     return DashNoInterNetScreen(
       child: Scaffold(
         appBar: AppBar(title: const Text("Test Screen"), centerTitle: true),
         body: const Center(child: Text("your device online!", style: TextStyle(fontSize: 16))),
       ),
     );
-  }
-}
+  
 ```
 
+Add custom Image and Text :
 
-## 🚀 Installation
+```
+ ///wrap with DashNoInterNetScreen for your project any screen
+    return DashNoInterNetScreen(
+      image: 'assets/no_internet.png', //add it your image
+      text: 'No internet? Please Check Your Internet Connection!', //add it your text
+      child: Scaffold(
+        appBar: AppBar(title: const Text("Test Screen"), centerTitle: true),
+        body: const Center(child: Text("your device online!", style: TextStyle(fontSize: 16))),
+      ),
+    );
+```
 
-Add this to your `pubspec.yaml`:
+# Bugs and Feedback 
+We welcome and appreciate any suggestions you may have for improvement. For bugs, questions, and discussions please use the  [GitHub Issues](https://github.com/sentanilesh007/dash_no_internet_screen/issues).
 
-```yaml
-dependencies:
-  dash_no_internet_screen: ^0.0.1
+# Acknowledgments
+It extends Flutter’s foundation to provide a ready-to-use, customizable "No Internet" screen. While Flutter offers powerful dash_no_internet_screen simplifies the process by combining widgets (like no internet avaiable to show image and text by defult and custom both) into a single package you can drop into any app.
+
+# Contribution
+The DashStack team enthusiastically welcomes contributions and project participation! There are a bunch of things you can do if you want to contribute! The Contributor Guide has all the information you need for everything from reporting bugs to contributing entire new features. Please don't hesitate to jump in if you'd like to, or even ask us questions if something isn't clear.
+
+# Credits
+`dash_no_internet_screen` is owned and maintained by the **Dashstack** team.  
+Follow us for updates and new releases 🚀.
+
+
