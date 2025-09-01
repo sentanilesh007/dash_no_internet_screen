@@ -1,6 +1,6 @@
 # 🚀  Dash No Internet Screen 
 
-[![Pub Version](https://img.shields.io/pub/v/yourpackage-name.svg)](link)  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Pub Version](https://img.shields.io/pub/v/yourpackage-name.svg)](link)
 
 A customizable **No Internet Screen** for Flutter apps with a reusable widget.  
 When your app has no connectivity, instead of a boring static screen, you can show users with customizable text and image.
