@@ -6,6 +6,7 @@ class TestScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ///wrap with DashNoInterNetScreen for your project any screen
     return DashNoInterNetScreen(
       image: "assets/no_wifi.png",
       text: "Oops! You're offline!",
