@@ -8,7 +8,7 @@ class TestScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DashNoInterNetScreen(
       image: "assets/no_wifi.png",
-      text: "Oops! You're offline 🚫",
+      text: "Oops! You're offline!",
       textStyle: const TextStyle(fontSize: 18, color: Colors.red, fontWeight: FontWeight.bold),
       retryButtonText: "Reconnect",
       retryButtonColor: Colors.blue,
