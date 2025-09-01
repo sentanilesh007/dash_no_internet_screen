@@ -1,24 +1,3 @@
-// import 'package:dash_no_internet_screen/dash_no_internet_screen.dart'; //import package
-// import 'package:flutter/material.dart';
-//
-// /// this is how to use in your app page for example
-// class TestScreen extends
-// StatelessWidget {
-//   const TestScreen({super.key});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     ///wrap with DashNoInterNetScreen for your project any screen
-//     return DashNoInterNetScreen(
-//       image: 'assets/no_internet.png', //add it your image
-//       text: 'No internet? Please Check Your Internet Connection!', //add it your text
-//       child: Scaffold(
-//         appBar: AppBar(title: const Text("Test Screen"), centerTitle: true),
-//         body: const Center(child: Text("your device online!", style: TextStyle(fontSize: 16))),
-//       ),
-//     );
-//   }
-// }
 import 'package:dash_no_internet_screen/dash_no_internet_screen.dart';
 import 'package:flutter/material.dart';
 
