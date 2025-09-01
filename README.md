@@ -29,7 +29,9 @@ dependencies:
   ```
 ### 2. Install it
 You can install packages from the command line:
+
 with pub:
+
 ```
 $ pub get
 ```
@@ -42,7 +44,13 @@ $ flutter pub get
 import 'package:dash_no_internet_screen/dash_no_internet_screen.dart';
 ``` 
 ### 4. Use it
-Sample app demonstrates how simple the usage of the library actually is.
+[Sample](https://github.com/sentanilesh007/dash_no_internet_screen) app demonstrates how simple the usage of the library actually is.
+
+Using `DashNoInterNetScreen` in your project is super simple .  
+
+You just need to **wrap your screen with `DashNoInterNetScreen`**, and it will automatically handle the internet connectivity state for you.
+
+---
 
 ## Basic usage
 
@@ -74,18 +82,13 @@ Add custom Image and Text :
 ```
 
 # Bugs and Feedback 
-
-We welcome and appreciate any suggestions you may have for improvement. For bugs, questions, and discussions please use the Github Issues.
+We welcome and appreciate any suggestions you may have for improvement. For bugs, questions, and discussions please use the  [GitHub Issues](https://github.com/sentanilesh007/dash_no_internet_screen/issues).
 
 # Acknowledgments
 It extends Flutter’s foundation to provide a ready-to-use, customizable "No Internet" screen. While Flutter offers powerful dash_no_internet_screen simplifies the process by combining widgets (like no internet avaiable to show image and text by defult and custom both) into a single package you can drop into any app.
 
 # Contribution
-💙 The DashStack team enthusiastically welcomes contributions and project participation!
-There are plenty of ways you can get involved: from reporting bugs to suggesting improvements, or even contributing entire new features.
-
-📖 Check out our Contributor Guide for all the details you need to get started.
-We’d love for you to jump in, and please don’t hesitate to reach out if something isn’t clear — questions and feedback are always welcome!
+The DashStack team enthusiastically welcomes contributions and project participation! There are a bunch of things you can do if you want to contribute! The Contributor Guide has all the information you need for everything from reporting bugs to contributing entire new features. Please don't hesitate to jump in if you'd like to, or even ask us questions if something isn't clear.
 
 # Credits
 `dash_no_internet_screen` is owned and maintained by the **Dashstack** team.  
