@@ -4,6 +4,11 @@ All notable changes to the **dash_no_internet_screen** package will be documente
 This project follows [Semantic Versioning](https://semver.org/).
 
 ---
+## [0.0.4] - 2025-09-03
+### Changed
+- Improved documentation in `README.md`.
+- changes in `dash_no_internet_screen` file for better understanding and improvements.
+
 ## [0.0.3] - 2025-09-01
 ### Changed
 - Improved documentation in `README.md` with changes poster image.
