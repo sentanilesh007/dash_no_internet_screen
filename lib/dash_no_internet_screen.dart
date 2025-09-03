@@ -85,7 +85,10 @@ class DashNoInterNetScreen extends StatefulWidget {
     this.retryButtonTextStyle,
     this.retryButtonColor = Colors.blue,
     this.retryButtonTextColor = Colors.white,
-    this.retryButtonPadding = const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+    this.retryButtonPadding = const EdgeInsets.symmetric(
+      horizontal: 24,
+      vertical: 12,
+    ),
     this.backgroundColor = Colors.white,
     this.onInternetAvailable,
     this.onRetryFailed,
@@ -108,7 +111,9 @@ class _DashNoInterNetScreenState extends State<DashNoInterNetScreen> {
   @override
   void initState() {
     super.initState();
-    connectivitySubscription = Connectivity().onConnectivityChanged.listen(updateConnectionStatus);
+    connectivitySubscription = Connectivity().onConnectivityChanged.listen(
+      updateConnectionStatus,
+    );
     checkInitialConnectivity();
   }
 
@@ -120,7 +125,9 @@ class _DashNoInterNetScreenState extends State<DashNoInterNetScreen> {
 
   /// Updates [hasInternet] based on current [ConnectivityResult].
   void updateConnectionStatus(List<ConnectivityResult> results) {
-    final hasInternet = results.any((result) => result != ConnectivityResult.none);
+    final hasInternet = results.any(
+      (result) => result != ConnectivityResult.none,
+    );
     if (this.hasInternet != hasInternet) {
       setState(() {
         this.hasInternet = hasInternet;
@@ -160,18 +167,31 @@ class _DashNoInterNetScreenState extends State<DashNoInterNetScreen> {
           mainAxisAlignment: widget.mainAxisAlignment,
           crossAxisAlignment: widget.crossAxisAlignment,
           children: [
-            Image.asset(widget.image ?? "assets/no_internet.png", height: imageHeight, width: imageWidth),
+            Image.asset(
+              widget.image ?? "assets/no_internet.png",
+              height: imageHeight,
+              width: imageWidth,
+            ),
             SizedBox(height: widget.spacing),
             Text(
               widget.text ?? "No internet? Please check your connection!",
-              style: widget.textStyle ?? const TextStyle(fontSize: 20, fontWeight: FontWeight.w400, color: Colors.black),
+              style:
+                  widget.textStyle ??
+                  const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black,
+                  ),
               textAlign: widget.textAlign,
             ),
             SizedBox(height: widget.spacing),
             ElevatedButton(
               onPressed: () async {
-                final connectivityResult = await Connectivity().checkConnectivity();
-                final hasInternet = connectivityResult.any((result) => result != ConnectivityResult.none);
+                final connectivityResult = await Connectivity()
+                    .checkConnectivity();
+                final hasInternet = connectivityResult.any(
+                  (result) => result != ConnectivityResult.none,
+                );
                 if (hasInternet) {
                   setState(() {
                     this.hasInternet = true;
@@ -179,16 +199,31 @@ class _DashNoInterNetScreenState extends State<DashNoInterNetScreen> {
                   widget.onInternetAvailable?.call();
                 } else {
                   widget.onRetryFailed?.call();
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('No internet connection. Please try again.')));
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text(
+                        'No internet connection. Please try again.',
+                      ),
+                    ),
+                  );
                 }
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: widget.retryButtonColor,
                 foregroundColor: widget.retryButtonTextColor,
                 padding: widget.retryButtonPadding,
-                shape: widget.retryButtonBorderShape ?? RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                shape:
+                    widget.retryButtonBorderShape ??
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
               ),
-              child: Text(widget.retryButtonText, style: widget.retryButtonTextStyle ?? TextStyle(color: widget.retryButtonTextColor, fontSize: 16)),
+              child: Text(
+                widget.retryButtonText,
+                style:
+                    widget.retryButtonTextStyle ??
+                    TextStyle(color: widget.retryButtonTextColor, fontSize: 16),
+              ),
             ),
           ],
         ),
