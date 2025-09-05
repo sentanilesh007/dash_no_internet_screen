@@ -16,9 +16,9 @@ When your app has no connectivity, instead of a boring static screen, you can sh
 ✅ Plug & Play → Wrap your any widget and screens with `DashNoInternetScreen`.    
 
 ## 📸 Screenshots & Demo
-| Without customization | With customization | 
+| Without customization | With customization |
 |------------------------|--------------------|
-| <img src="https://github.com/user-attachments/assets/ecf6b8fa-bf0c-4133-85b6-2dee8fa40163" width="300"/> | <img src="https://github.com/user-attachments/assets/90fa2b07-6a35-4808-9978-50bdaa6d2988" width="300"/> | <img src="https://github.com/user-attachments/assets/your-demo.gif" width="300"/> |
+| ![Without customization](https://github.com/user-attachments/assets/ecf6b8fa-bf0c-4133-85b6-2dee8fa40163) | ![With customization](https://github.com/user-attachments/assets/90fa2b07-6a35-4808-9978-50bdaa6d2988) | 
 
 ---
 ## How to use it?
