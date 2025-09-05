@@ -4,6 +4,12 @@ All notable changes to the **dash_no_internet_screen** package will be documente
 This project follows [Semantic Versioning](https://semver.org/).
 
 ---
+
+## [0.0.8] - (2025-Sep-05)
+
+- update documentation in `README.md` with better usage examples.
+
+
 ## [0.0.7] - (2025-Sep-05)
 
 - Lowered Dart SDK constraint from `>=3.8.0 <4.0.0` to `>=3.0.0 <4.0.0` for broader compatibility.

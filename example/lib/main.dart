@@ -13,11 +13,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'dash no internet screen',
-      theme: ThemeData(primarySwatch: Colors.blue),
       home: TestScreen(),
     );
   }
 }
+
 class TestScreen extends StatelessWidget {
   const TestScreen({super.key});
 
@@ -25,21 +25,25 @@ class TestScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     ///wrap with DashNoInterNetScreen for your project any screen
     return DashNoInterNetScreen(
-      image: Image.asset("assets/no_wifi.png", width: 150, height: 150),
+      image: Image.asset(
+        "assets/no_wifi.png",
+        width: 150,
+        height: 150,
+      ),
       text: "Oops! You're offline!",
-      textStyle: const TextStyle(fontSize: 18, color: Colors.red, fontWeight: FontWeight.bold),
-      backgroundColor: Colors.grey.shade100,
+      backgroundColor: Colors.white,
+      padding: const EdgeInsets.all(16.0),
       textAlign: TextAlign.center,
+      buttonTextColor: Colors.white,
+      buttonColor: Colors.blue,
+      buttonPadding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
       buttonText: "Reconnect",
       buttonTextStyle: const TextStyle(fontSize: 16, color: Colors.white),
-      buttonColor: Colors.blue,
-      buttonTextColor: Colors.white,
-      buttonPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      buttonStyle: ElevatedButton.styleFrom(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      buttonBorderShape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8.0),
       ),
-      buttonBorderShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-      spacing: 50,
+      buttonStyle: ElevatedButton.styleFrom(elevation: 4, backgroundColor: Colors.blue),
+      textStyle:  const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
       onInternetAvailable: () {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text("Internet connected!")),
@@ -47,12 +51,13 @@ class TestScreen extends StatelessWidget {
       },
       onRetryFailed: () {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("no connection yet, please try again!")),
+          const SnackBar(content: Text("no internet!")),
         );
       },
       child: Scaffold(
         appBar: AppBar(title: const Text("Test Screen"), centerTitle: true),
-        body: const Center(child: Text("Your device is online!", style: TextStyle(fontSize: 16))),
+        body: const Center(
+            child: Text("Your device is online!", style: TextStyle(fontSize: 16))),
       ),
     );
   }
