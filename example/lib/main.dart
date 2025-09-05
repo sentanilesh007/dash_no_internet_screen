@@ -36,14 +36,16 @@ class TestScreen extends StatelessWidget {
       textAlign: TextAlign.center,
       buttonTextColor: Colors.white,
       buttonColor: Colors.blue,
-      buttonPadding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+      buttonPadding:
+          const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
       buttonText: "Reconnect",
       buttonTextStyle: const TextStyle(fontSize: 16, color: Colors.white),
       buttonBorderShape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8.0),
       ),
-      buttonStyle: ElevatedButton.styleFrom(elevation: 4, backgroundColor: Colors.blue),
-      textStyle:  const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+      buttonStyle:
+          ElevatedButton.styleFrom(elevation: 4, backgroundColor: Colors.blue),
+      textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
       onInternetAvailable: () {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text("Internet connected!")),
@@ -57,7 +59,8 @@ class TestScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(title: const Text("Test Screen"), centerTitle: true),
         body: const Center(
-            child: Text("Your device is online!", style: TextStyle(fontSize: 16))),
+            child:
+                Text("Your device is online!", style: TextStyle(fontSize: 16))),
       ),
     );
   }

@@ -104,8 +104,8 @@ class _DashNoInterNetScreenState extends State<DashNoInterNetScreen> {
   void initState() {
     super.initState();
     connectivitySubscription = Connectivity().onConnectivityChanged.listen(
-      updateConnectionStatus,
-    );
+          updateConnectionStatus,
+        );
     checkInitialConnectivity();
   }
 
@@ -118,7 +118,7 @@ class _DashNoInterNetScreenState extends State<DashNoInterNetScreen> {
   /// Updates [hasInternet] based on current [ConnectivityResult].
   void updateConnectionStatus(List<ConnectivityResult> results) {
     final hasInternet = results.any(
-          (result) => result != ConnectivityResult.none,
+      (result) => result != ConnectivityResult.none,
     );
     if (this.hasInternet != hasInternet) {
       setState(() {
@@ -158,12 +158,15 @@ class _DashNoInterNetScreenState extends State<DashNoInterNetScreen> {
           children: [
             // Custom image or default fallback network image
             widget.image ??
-                Icon(Icons.wifi_off,size: 150,color: Colors.blue,),
+                Icon(
+                  Icons.wifi_off,
+                  size: 150,
+                  color: Colors.blue,
+                ),
             SizedBox(height: widget.spacing),
             Text(
               widget.text ?? "No internet? Please check your connection!",
-              style:
-              widget.textStyle ??
+              style: widget.textStyle ??
                   const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w400,
@@ -174,10 +177,10 @@ class _DashNoInterNetScreenState extends State<DashNoInterNetScreen> {
             SizedBox(height: widget.spacing),
             ElevatedButton(
               onPressed: () async {
-                final connectivityResult = await Connectivity()
-                    .checkConnectivity();
+                final connectivityResult =
+                    await Connectivity().checkConnectivity();
                 final hasInternet = connectivityResult.any(
-                      (result) => result != ConnectivityResult.none,
+                  (result) => result != ConnectivityResult.none,
                 );
                 if (hasInternet) {
                   setState(() {
@@ -186,25 +189,23 @@ class _DashNoInterNetScreenState extends State<DashNoInterNetScreen> {
                   widget.onInternetAvailable?.call();
                 } else {
                   widget.onRetryFailed?.call();
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text("no Internet ! Try again later.")),
-                     );
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text("no Internet ! Try again later.")),
+                  );
                 }
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: widget.buttonColor,
                 foregroundColor: widget.buttonTextColor,
                 padding: widget.buttonPadding,
-                shape:
-                widget.buttonBorderShape ??
+                shape: widget.buttonBorderShape ??
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
               ),
               child: Text(
                 widget.buttonText,
-                style:
-                widget.buttonTextStyle ??
+                style: widget.buttonTextStyle ??
                     TextStyle(color: widget.buttonTextColor, fontSize: 20),
               ),
             ),
