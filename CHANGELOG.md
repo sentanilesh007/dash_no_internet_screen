@@ -4,6 +4,11 @@ All notable changes to the **dash_no_internet_screen** package will be documente
 This project follows [Semantic Versioning](https://semver.org/).
 
 ---
+## [0.0.7] - (2025-Sep-05)
+
+- Lowered Dart SDK constraint from `>=3.8.0 <4.0.0` to `>=3.0.0 <4.0.0` for broader compatibility.
+- This update allows projects using Dart 3.8.x to integrate `dash_no_internet_screen` without requiring a Flutter/Dart upgrade.
+- Minor code changes and improvements for custom image and button style.
 
 ## [0.0.6] - (2025-Sep-05)
 
