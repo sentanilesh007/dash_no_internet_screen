@@ -25,15 +25,20 @@ class TestScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     ///wrap with DashNoInterNetScreen for your project any screen
     return DashNoInterNetScreen(
-      image: "assets/no_wifi.png",
+      image: Image.asset("assets/no_wifi.png", width: 150, height: 150),
       text: "Oops! You're offline!",
       textStyle: const TextStyle(fontSize: 18, color: Colors.red, fontWeight: FontWeight.bold),
-      retryButtonText: "Reconnect",
-      retryButtonColor: Colors.blue,
-      retryButtonTextStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-      retryButtonBorderShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       backgroundColor: Colors.grey.shade100,
       textAlign: TextAlign.center,
+      buttonText: "Reconnect",
+      buttonTextStyle: const TextStyle(fontSize: 16, color: Colors.white),
+      buttonColor: Colors.blue,
+      buttonTextColor: Colors.white,
+      buttonPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      buttonStyle: ElevatedButton.styleFrom(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      ),
+      buttonBorderShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       spacing: 50,
       onInternetAvailable: () {
         ScaffoldMessenger.of(context).showSnackBar(

@@ -15,19 +15,13 @@ class DashNoInterNetScreen extends StatefulWidget {
   final EdgeInsets padding;
 
   /// Image asset path for the offline illustration.
-  final String? image;
+  final Widget? image;
 
   /// Vertical alignment of offline content.
   final MainAxisAlignment mainAxisAlignment;
 
   /// Horizontal alignment of offline content.
   final CrossAxisAlignment crossAxisAlignment;
-
-  /// Height of the offline image.
-  final double? imageHeight;
-
-  /// Width of the offline image.
-  final double? imageWidth;
 
   /// Message text shown when offline.
   final String? text;
@@ -39,25 +33,25 @@ class DashNoInterNetScreen extends StatefulWidget {
   final TextStyle? textStyle;
 
   /// Label for the retry button.
-  final String retryButtonText;
+  final String buttonText;
 
   /// Style for retry button text.
-  final TextStyle? retryButtonTextStyle;
+  final TextStyle? buttonTextStyle;
 
   /// Background color of retry button.
-  final Color retryButtonColor;
+  final Color buttonColor;
 
   /// Text color of retry button.
-  final Color retryButtonTextColor;
+  final Color buttonTextColor;
 
   /// Padding inside retry button.
-  final EdgeInsets retryButtonPadding;
+  final EdgeInsets buttonPadding;
 
   /// Custom [ButtonStyle] for retry button.
-  final ButtonStyle? retryButtonStyle;
+  final ButtonStyle? buttonStyle;
 
   /// Custom border shape for retry button.
-  final RoundedRectangleBorder? retryButtonBorderShape;
+  final RoundedRectangleBorder? buttonBorderShape;
 
   /// Background color of the offline screen.
   final Color backgroundColor;
@@ -77,23 +71,21 @@ class DashNoInterNetScreen extends StatefulWidget {
     required this.child,
     this.padding = const EdgeInsets.all(24.0),
     this.image,
-    this.imageHeight,
-    this.imageWidth,
     this.text,
     this.textStyle,
-    this.retryButtonText = "Try Again",
-    this.retryButtonTextStyle,
-    this.retryButtonColor = Colors.blue,
-    this.retryButtonTextColor = Colors.white,
-    this.retryButtonPadding = const EdgeInsets.symmetric(
+    this.buttonText = "Try Again",
+    this.buttonTextStyle,
+    this.buttonColor = Colors.blue,
+    this.buttonTextColor = Colors.white,
+    this.buttonPadding = const EdgeInsets.symmetric(
       horizontal: 24,
       vertical: 12,
     ),
     this.backgroundColor = Colors.white,
     this.onInternetAvailable,
     this.onRetryFailed,
-    this.retryButtonStyle,
-    this.retryButtonBorderShape,
+    this.buttonStyle,
+    this.buttonBorderShape,
     this.spacing = 30,
     this.textAlign = TextAlign.center,
     this.mainAxisAlignment = MainAxisAlignment.center,
@@ -156,9 +148,6 @@ class _DashNoInterNetScreenState extends State<DashNoInterNetScreen> {
 
   /// Builds the "No Internet" screen UI.
   Widget buildNoInternetScreen(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final imageHeight = widget.imageHeight ?? size.height * 0.3;
-    final imageWidth = widget.imageWidth ?? size.width * 0.6;
     return Scaffold(
       backgroundColor: widget.backgroundColor,
       body: Padding(
@@ -167,11 +156,13 @@ class _DashNoInterNetScreenState extends State<DashNoInterNetScreen> {
           mainAxisAlignment: widget.mainAxisAlignment,
           crossAxisAlignment: widget.crossAxisAlignment,
           children: [
-            Image.asset(
-              widget.image ?? "assets/no_internet.png",
-              height: imageHeight,
-              width: imageWidth,
-            ),
+            // Custom image or default fallback network image
+            widget.image ??
+                Image.network(
+                  'https://i.ibb.co/4W2DGKm/no-internet.png',
+                  height: 150,
+                  width: 150,
+                ),
             SizedBox(height: widget.spacing),
             Text(
               widget.text ?? "No internet? Please check your connection!",
@@ -209,20 +200,20 @@ class _DashNoInterNetScreenState extends State<DashNoInterNetScreen> {
                 }
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: widget.retryButtonColor,
-                foregroundColor: widget.retryButtonTextColor,
-                padding: widget.retryButtonPadding,
+                backgroundColor: widget.buttonColor,
+                foregroundColor: widget.buttonTextColor,
+                padding: widget.buttonPadding,
                 shape:
-                    widget.retryButtonBorderShape ??
+                    widget.buttonBorderShape ??
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
               ),
               child: Text(
-                widget.retryButtonText,
+                widget.buttonText,
                 style:
-                    widget.retryButtonTextStyle ??
-                    TextStyle(color: widget.retryButtonTextColor, fontSize: 16),
+                    widget.buttonTextStyle ??
+                    TextStyle(color: widget.buttonTextColor, fontSize: 16),
               ),
             ),
           ],
@@ -231,3 +222,4 @@ class _DashNoInterNetScreenState extends State<DashNoInterNetScreen> {
     );
   }
 }
+
