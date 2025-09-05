@@ -15,10 +15,10 @@ When your app has no connectivity, instead of a boring static screen, you can sh
 ✅ Supports add images and random messages text.  
 ✅ Plug & Play → Wrap your any widget and screens with `DashNoInternetScreen`.    
 
-## 📸 Screenshots
-| No Internet Screen | Example Screen |
-|--------------------|----------------|
-| <img width="400" height="711" alt="no_internet_screen" src="https://github.com/user-attachments/assets/ca0139af-c384-4a61-af21-5a8568268ea8" /> | <img width="400" height="711" alt="test_screen" src="https://github.com/user-attachments/assets/a88c3f40-e99d-465e-9df5-725b61900265" /> |
+## 📸 Screenshots & Demo
+| Without customization | With customization | 
+|------------------------|--------------------|
+| <img src="https://github.com/user-attachments/assets/ecf6b8fa-bf0c-4133-85b6-2dee8fa40163" width="300"/> | <img src="https://github.com/user-attachments/assets/90fa2b07-6a35-4808-9978-50bdaa6d2988" width="300"/> | <img src="https://github.com/user-attachments/assets/your-demo.gif" width="300"/> |
 
 ---
 ## How to use it?
@@ -72,18 +72,27 @@ Add WithOut Image And Text Using BY Defult :
 Add All Customiztion According Your Screen :
 
 ```
-      ///wrap with DashNoInterNetScreen for your project any screen
-      return DashNoInterNetScreen(
-      image: "assets/no_wifi.png",
+///wrap with DashNoInterNetScreen for your project any screen
+    return DashNoInterNetScreen(
+      image: Image.asset(
+        "assets/no_wifi.png",
+        width: 150,
+        height: 150,
+      ),
       text: "Oops! You're offline!",
-      textStyle: const TextStyle(fontSize: 18, color: Colors.red, fontWeight: FontWeight.bold),
-      retryButtonText: "Reconnect",
-      retryButtonColor: Colors.blue,
-      retryButtonTextStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-      retryButtonBorderShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-      backgroundColor: Colors.grey.shade100,
+      backgroundColor: Colors.white,
+      padding: const EdgeInsets.all(16.0),
       textAlign: TextAlign.center,
-      spacing: 50,
+      buttonTextColor: Colors.white,
+      buttonColor: Colors.blue,
+      buttonPadding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+      buttonText: "Retry",
+      buttonTextStyle: const TextStyle(fontSize: 16, color: Colors.white),
+      buttonBorderShape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      buttonStyle: ElevatedButton.styleFrom(elevation: 4, backgroundColor: Colors.blue),
+      textStyle:  const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
       onInternetAvailable: () {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text("Internet connected!")),
@@ -91,12 +100,13 @@ Add All Customiztion According Your Screen :
       },
       onRetryFailed: () {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("no connection yet, please try again!")),
+          const SnackBar(content: Text("no internet!")),
         );
       },
       child: Scaffold(
         appBar: AppBar(title: const Text("Test Screen"), centerTitle: true),
-        body: const Center(child: Text("Your device is online!", style: TextStyle(fontSize: 16))),
+        body: const Center(
+            child: Text("Your device is online!", style: TextStyle(fontSize: 16))),
       ),
     );
 ```
@@ -113,5 +123,3 @@ The DashStack team enthusiastically welcomes contributions and project participa
 # Credits
 `dash_no_internet_screen` is owned and maintained by the **Dashstack** team.  
 Follow us for updates and new releases 🚀.
-
-
