@@ -5,6 +5,10 @@ This project follows [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [0.0.9] - (2025-Sep-15)
+
+- Updated dependencies to latest versions (`connectivity_plus: ^7.0.0`).
+
 ## [0.0.8] - (2025-Sep-05)
 
 - update documentation in `README.md` with better usage examples.
