@@ -16,9 +16,9 @@ When your app has no connectivity, instead of a boring static screen, you can sh
 ✅ Plug & Play → Wrap your any widget and screens with `DashNoInternetScreen`.    
 
 ## 📸 Screenshots & Demo
-| Without customization | With customization |
+|NoInternet Screen| NoInternet Screen |
 |------------------------|--------------------|
-| ![Without customization](https://github.com/user-attachments/assets/ecf6b8fa-bf0c-4133-85b6-2dee8fa40163) | ![With customization](https://github.com/user-attachments/assets/90fa2b07-6a35-4808-9978-50bdaa6d2988) | 
+| ![Without customization](https://github.com/user-attachments/assets/258148c1-84fb-4651-88d7-56ad7b335b79) | ![With customization](https://github.com/user-attachments/assets/a36d0acc-194a-462a-940b-e684ed14fc41) | 
 
 ---
 ## How to use it?
@@ -75,24 +75,30 @@ Add All Customiztion According Your Screen :
 ///wrap with DashNoInterNetScreen for your project any screen
     return DashNoInterNetScreen(
       image: Image.asset(
-        "assets/no_wifi.png",
-        width: 150,
-        height: 150,
+        "assets/ic_no_internet.png",
+        fit: BoxFit.contain,
       ),
-      text: "Oops! You're offline!",
+      titleText: "Oops !",
+      titleTextStyle: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black),
+      subtitleText: "No Internet Connection Found. Check your connection and start again.",
+      subtitleTextStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: Colors.black54),
       backgroundColor: Colors.white,
       padding: const EdgeInsets.all(16.0),
       textAlign: TextAlign.center,
+      spacing: 15,
       buttonTextColor: Colors.white,
       buttonColor: Colors.blue,
-      buttonPadding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
-      buttonText: "Retry",
+      buttonPadding:
+          const EdgeInsets.symmetric(horizontal: 18.0, vertical: 8.0),
+      buttonText: "Try Again",
       buttonTextStyle: const TextStyle(fontSize: 16, color: Colors.white),
       buttonBorderShape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: BorderRadius.circular(10.0),
       ),
-      buttonStyle: ElevatedButton.styleFrom(elevation: 4, backgroundColor: Colors.blue),
-      textStyle:  const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+      buttonHeight: 50,
+      buttonWidth: 250,
+      buttonStyle:
+          ElevatedButton.styleFrom(elevation: 4, backgroundColor: Colors.blue),
       onInternetAvailable: () {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text("Internet connected!")),
@@ -100,13 +106,13 @@ Add All Customiztion According Your Screen :
       },
       onRetryFailed: () {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("no internet!")),
+          const SnackBar(content: Text("no internet found! please connect to internet and try again.")),
         );
       },
       child: Scaffold(
         appBar: AppBar(title: const Text("Test Screen"), centerTitle: true),
         body: const Center(
-            child: Text("Your device is online!", style: TextStyle(fontSize: 16))),
+            child: Text("Your device is online!", style: TextStyle(fontSize: 18))),
       ),
     );
 ```
