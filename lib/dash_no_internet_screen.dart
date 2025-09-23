@@ -23,14 +23,20 @@ class DashNoInterNetScreen extends StatefulWidget {
   /// Horizontal alignment of offline content.
   final CrossAxisAlignment crossAxisAlignment;
 
-  /// Message text shown when offline.
-  final String? text;
+  /// Bold title text (e.g. "Oops!").
+  final String? titleText;
+
+  /// Subtitle text shown under the title.
+  final String? subtitleText;
 
   /// Alignment of the offline message.
   final TextAlign textAlign;
 
-  /// Style for the offline message.
-  final TextStyle? textStyle;
+  /// Style for the title text.
+  final TextStyle? titleTextStyle;
+
+  /// Style for the subtitle text.
+  final TextStyle? subtitleTextStyle;
 
   /// Label for the retry button.
   final String buttonText;
@@ -59,6 +65,12 @@ class DashNoInterNetScreen extends StatefulWidget {
   /// Vertical spacing between widgets in offline screen.
   final double spacing;
 
+  /// Optional width for the retry button.
+  final double? buttonWidth;
+
+  /// Optional height for the retry button.
+  final double? buttonHeight;
+
   /// Callback fired when internet becomes available.
   final VoidCallback? onInternetAvailable;
 
@@ -71,8 +83,10 @@ class DashNoInterNetScreen extends StatefulWidget {
     required this.child,
     this.padding = const EdgeInsets.all(24.0),
     this.image,
-    this.text,
-    this.textStyle,
+    this.titleText,
+    this.subtitleText,
+    this.titleTextStyle,
+    this.subtitleTextStyle,
     this.buttonText = "Try Again",
     this.buttonTextStyle,
     this.buttonColor = Colors.blue,
@@ -89,7 +103,9 @@ class DashNoInterNetScreen extends StatefulWidget {
     this.spacing = 30,
     this.textAlign = TextAlign.center,
     this.mainAxisAlignment = MainAxisAlignment.center,
-    this.crossAxisAlignment = CrossAxisAlignment.stretch,
+    this.crossAxisAlignment = CrossAxisAlignment.center,
+    this.buttonWidth,
+    this.buttonHeight,
   });
 
   @override
@@ -104,8 +120,8 @@ class _DashNoInterNetScreenState extends State<DashNoInterNetScreen> {
   void initState() {
     super.initState();
     connectivitySubscription = Connectivity().onConnectivityChanged.listen(
-          updateConnectionStatus,
-        );
+      updateConnectionStatus,
+    );
     checkInitialConnectivity();
   }
 
@@ -118,7 +134,7 @@ class _DashNoInterNetScreenState extends State<DashNoInterNetScreen> {
   /// Updates [hasInternet] based on current [ConnectivityResult].
   void updateConnectionStatus(List<ConnectivityResult> results) {
     final hasInternet = results.any(
-      (result) => result != ConnectivityResult.none,
+          (result) => result != ConnectivityResult.none,
     );
     if (this.hasInternet != hasInternet) {
       setState(() {
@@ -156,57 +172,83 @@ class _DashNoInterNetScreenState extends State<DashNoInterNetScreen> {
           mainAxisAlignment: widget.mainAxisAlignment,
           crossAxisAlignment: widget.crossAxisAlignment,
           children: [
-            // Custom image or default fallback network image
+            // Custom image or default fallback icon
             widget.image ??
-                Icon(
+                const Icon(
                   Icons.wifi_off,
                   size: 150,
                   color: Colors.blue,
                 ),
             SizedBox(height: widget.spacing),
-            Text(
-              widget.text ?? "No internet? Please check your connection!",
-              style: widget.textStyle ??
-                  const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
+            // Title + Subtitle with RichText
+            Text.rich(
+              TextSpan(
+                children: [
+                  TextSpan(
+                    text: "${widget.titleText ?? "Oops!"}\n",
+                    style: widget.titleTextStyle ??
+                        const TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
                   ),
+                  TextSpan(
+                    text: widget.subtitleText ??
+                        "No Internet Connection Found. Check your connection and try again.",
+                    style: widget.subtitleTextStyle ??
+                        const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.normal,
+                          color: Colors.black54,
+                        ),
+                  ),
+                ],
+              ),
               textAlign: widget.textAlign,
             ),
-            SizedBox(height: widget.spacing),
-            ElevatedButton(
-              onPressed: () async {
-                final connectivityResult =
+            const SizedBox(height: 100),
+            Align(
+              alignment: Alignment.center,
+              child: SizedBox(
+                width: widget.buttonWidth ?? 250,
+                height: widget.buttonHeight ?? 50,
+                child: ElevatedButton(
+                  onPressed: () async {
+                    final connectivityResult =
                     await Connectivity().checkConnectivity();
-                final hasInternet = connectivityResult.any(
-                  (result) => result != ConnectivityResult.none,
-                );
-                if (hasInternet) {
-                  setState(() {
-                    this.hasInternet = true;
-                  });
-                  widget.onInternetAvailable?.call();
-                } else {
-                  widget.onRetryFailed?.call();
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text("no Internet ! Try again later.")),
-                  );
-                }
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: widget.buttonColor,
-                foregroundColor: widget.buttonTextColor,
-                padding: widget.buttonPadding,
-                shape: widget.buttonBorderShape ??
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-              ),
-              child: Text(
-                widget.buttonText,
-                style: widget.buttonTextStyle ??
-                    TextStyle(color: widget.buttonTextColor, fontSize: 20),
+                    final hasInternet = connectivityResult.any(
+                          (result) => result != ConnectivityResult.none,
+                    );
+                    if (hasInternet) {
+                      setState(() => this.hasInternet = true);
+                      widget.onInternetAvailable?.call();
+                    } else {
+                      widget.onRetryFailed?.call();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                            content: Text("No Internet Connection Found! Check your connection and try again.")),
+                      );
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: widget.buttonColor,
+                    foregroundColor: widget.buttonTextColor,
+                    padding: widget.buttonPadding,
+                    shape: widget.buttonBorderShape ??
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                  ),
+                  child: Text(
+                    widget.buttonText,
+                    style: widget.buttonTextStyle ??
+                        TextStyle(
+                          color: widget.buttonTextColor,
+                          fontSize: 16,
+                        ),
+                  ),
+                ),
               ),
             ),
           ],

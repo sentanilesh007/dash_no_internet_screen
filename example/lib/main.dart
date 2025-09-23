@@ -26,26 +26,30 @@ class TestScreen extends StatelessWidget {
     ///wrap with DashNoInterNetScreen for your project any screen
     return DashNoInterNetScreen(
       image: Image.asset(
-        "assets/no_wifi.png",
-        width: 150,
-        height: 150,
+        "assets/ic_no_internet.png",
+        fit: BoxFit.contain,
       ),
-      text: "Oops! You're offline!",
+      titleText: "Oops !",
+      titleTextStyle: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black),
+      subtitleText: "No Internet Connection Found. Check your connection and start again.",
+      subtitleTextStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: Colors.black54),
       backgroundColor: Colors.white,
       padding: const EdgeInsets.all(16.0),
       textAlign: TextAlign.center,
+      spacing: 15,
       buttonTextColor: Colors.white,
       buttonColor: Colors.blue,
       buttonPadding:
-          const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
-      buttonText: "Reconnect",
+          const EdgeInsets.symmetric(horizontal: 18.0, vertical: 8.0),
+      buttonText: "Try Again",
       buttonTextStyle: const TextStyle(fontSize: 16, color: Colors.white),
       buttonBorderShape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: BorderRadius.circular(10.0),
       ),
+      buttonHeight: 50,
+      buttonWidth: 250,
       buttonStyle:
           ElevatedButton.styleFrom(elevation: 4, backgroundColor: Colors.blue),
-      textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
       onInternetAvailable: () {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text("Internet connected!")),
@@ -53,14 +57,13 @@ class TestScreen extends StatelessWidget {
       },
       onRetryFailed: () {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("no internet!")),
+          const SnackBar(content: Text("no internet found! please connect to internet and try again.")),
         );
       },
       child: Scaffold(
         appBar: AppBar(title: const Text("Test Screen"), centerTitle: true),
         body: const Center(
-            child:
-                Text("Your device is online!", style: TextStyle(fontSize: 16))),
+            child: Text("Your device is online!", style: TextStyle(fontSize: 18))),
       ),
     );
   }
