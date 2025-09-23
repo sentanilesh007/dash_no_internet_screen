@@ -120,8 +120,8 @@ class _DashNoInterNetScreenState extends State<DashNoInterNetScreen> {
   void initState() {
     super.initState();
     connectivitySubscription = Connectivity().onConnectivityChanged.listen(
-      updateConnectionStatus,
-    );
+          updateConnectionStatus,
+        );
     checkInitialConnectivity();
   }
 
@@ -134,7 +134,7 @@ class _DashNoInterNetScreenState extends State<DashNoInterNetScreen> {
   /// Updates [hasInternet] based on current [ConnectivityResult].
   void updateConnectionStatus(List<ConnectivityResult> results) {
     final hasInternet = results.any(
-          (result) => result != ConnectivityResult.none,
+      (result) => result != ConnectivityResult.none,
     );
     if (this.hasInternet != hasInternet) {
       setState(() {
@@ -216,9 +216,9 @@ class _DashNoInterNetScreenState extends State<DashNoInterNetScreen> {
                 child: ElevatedButton(
                   onPressed: () async {
                     final connectivityResult =
-                    await Connectivity().checkConnectivity();
+                        await Connectivity().checkConnectivity();
                     final hasInternet = connectivityResult.any(
-                          (result) => result != ConnectivityResult.none,
+                      (result) => result != ConnectivityResult.none,
                     );
                     if (hasInternet) {
                       setState(() => this.hasInternet = true);
@@ -227,7 +227,8 @@ class _DashNoInterNetScreenState extends State<DashNoInterNetScreen> {
                       widget.onRetryFailed?.call();
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
-                            content: Text("No Internet Connection Found! Check your connection and try again.")),
+                            content: Text(
+                                "No Internet Connection Found! Check your connection and try again.")),
                       );
                     }
                   },

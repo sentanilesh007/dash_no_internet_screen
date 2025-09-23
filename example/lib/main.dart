@@ -30,9 +30,12 @@ class TestScreen extends StatelessWidget {
         fit: BoxFit.contain,
       ),
       titleText: "Oops !",
-      titleTextStyle: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black),
-      subtitleText: "No Internet Connection Found. Check your connection and start again.",
-      subtitleTextStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: Colors.black54),
+      titleTextStyle: const TextStyle(
+          fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black),
+      subtitleText:
+          "No Internet Connection Found. Check your connection and start again.",
+      subtitleTextStyle: const TextStyle(
+          fontSize: 16, fontWeight: FontWeight.normal, color: Colors.black54),
       backgroundColor: Colors.white,
       padding: const EdgeInsets.all(16.0),
       textAlign: TextAlign.center,
@@ -57,13 +60,16 @@ class TestScreen extends StatelessWidget {
       },
       onRetryFailed: () {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("no internet found! please connect to internet and try again.")),
+          const SnackBar(
+              content: Text(
+                  "no internet found! please connect to internet and try again.")),
         );
       },
       child: Scaffold(
         appBar: AppBar(title: const Text("Test Screen"), centerTitle: true),
         body: const Center(
-            child: Text("Your device is online!", style: TextStyle(fontSize: 18))),
+            child:
+                Text("Your device is online!", style: TextStyle(fontSize: 18))),
       ),
     );
   }
