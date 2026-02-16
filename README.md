@@ -1,6 +1,6 @@
 
 
-[![dashstack_poster](https://github.com/user-attachments/assets/12f83877-3a1d-4bc2-876b-c5e551acc7ca)](https://dashstack.notion.site/Ravi-Vithani-e65c362e335d45ef993225687e4aacb8?pvs=143)
+[![dashstack_poster](https://github.com/user-attachments/assets/12f83877-3a1d-4bc2-876b-c5e551acc7ca)](https://www.dashstack.tech/)
 
 
 #   Customize No Internet Screen 
